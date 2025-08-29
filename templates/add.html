@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Adicionar Máquina</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label>Patrimônio</label>
+        <input type="text" name="patrimonio" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Tipo</label>
+        <select name="tipo" class="form-control">
+            <option value="maquina_tipo_1">Máquina Tipo 1</option>
+            <option value="maquina_tipo_2">Máquina Tipo 2</option>
+            <option value="maquina_tipo_3">Máquina Tipo 3</option> <!-- Novo Tipo 3 para Máquinas -->
+            <option value="tela_tipo_1">Tela Tipo 1</option>
+            <option value="tela_tipo_2">Tela Tipo 2</option>
+            <option value="notebook_tipo_1">Notebook Tipo 1</option>
+            <option value="notebook_tipo_2">Notebook Tipo 2</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Setor</label>
+        <input type="text" name="setor" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Status</label>
+        <select name="status" class="form-control">
+            <option value="pendente">Pendente</option>
+            <option value="entregue">Entregue</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Salvar</button>
+</form>
+<style>
+    /* Aplica Monospace em todo o conteúdo da página */
+    * {
+        font-family: monospace, bold !important;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Lista de Equipamentos</h2>
+
+<!-- Formulário de busca e filtro -->
+<form method="GET" class="row g-3 mb-3">
+    <div class="col-12 col-md-3">
+        <input type="text" name="search" value="{{ search }}" class="form-control" placeholder="Buscar por patrimônio">
+    </div>
+    <div class="col-12 col-md-3">
+        <select name="status" class="form-control">
+            <option value="">Todos os Status</option>
+            <option value="pendente" {% if status_filter == 'pendente' %}selected{% endif %}>Pendente</option>
+            <option value="entregue" {% if status_filter == 'entregue' %}selected{% endif %}>Entregue</option>
+        </select>
+    </div>
+    <div class="col-12 col-md-3">
+        <select name="setor" class="form-control">
+            <option value="">Todos os Setores</option>
+            {% for s in setores %}
+                <option value="{{ s }}" {% if setor_filter == s %}selected{% endif %}>{{ s }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-12 col-md-3 d-flex flex-wrap gap-2">
+        <button type="submit" class="btn btn-primary flex-fill">Filtrar</button>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary flex-fill">Limpar</a>
+    </div>
+</form>
+
+<!-- Tabela com altura adaptável -->
+<div class="table-responsive" style="max-height: calc(100vh - 300px); overflow-y: auto;">
+    <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark sticky-top">
+            <tr>
+                <th>ID</th>
+                <th>Patrimônio</th>
+                <th>Tipo</th>
+                <th>Setor</th>
+                <th>Status</th>
+                <th class="text-center">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in maquinas %}
+            <tr>
+                <td>{{ m.id }}</td>
+                <td>{{ m.patrimonio }}</td>
+                <td>
+                    {% if m.tipo == 'maquina_tipo_1' %}Máquina Tipo 1{% endif %}
+                    {% if m.tipo == 'maquina_tipo_2' %}Máquina Tipo 2{% endif %}
+                    {% if m.tipo == 'maquina_tipo_3' %}Máquina Tipo 3{% endif %}
+                    {% if m.tipo == 'tela_tipo_1' %}Tela Tipo 1{% endif %}
+                    {% if m.tipo == 'tela_tipo_2' %}Tela Tipo 2{% endif %}
+                    {% if m.tipo == 'notebook_tipo_1' %}Notebook Tipo 1{% endif %}
+                    {% if m.tipo == 'notebook_tipo_2' %}Notebook Tipo 2{% endif %}
+                </td>
+                <td>{{ m.setor }}</td>
+                <td>
+                    {% if m.status == 'entregue' %}
+                        <span class="badge bg-success">Entregue</span>
+                    {% else %}
+                        <span class="badge bg-warning text-dark">Pendente</span>
+                    {% endif %}
+                </td>
+                <td class="text-center">
+                    <a href="javascript:void(0)" onclick="confirmarSenha('{{ url_for('edit', id=m.id) }}')" class="btn btn-warning btn-sm mb-1">Editar</a>
+                    <a href="javascript:void(0)" onclick="confirmarSenha('{{ url_for('delete', id=m.id) }}')" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Script de verificação de senha -->
+<script>
+    function confirmarSenha(url) {
+        const senhaCorreta = "123456788"; // Troque para sua senha
+        const senha = prompt("Digite a senha para continuar:");
+
+        if (senha === senhaCorreta) {
+            window.location.href = url;
+        } else if (senha !== null) {
+            alert("Senha incorreta!");
+        }
+    }
+</script>
+<style>
+    /* Aplica Monospace em todo o conteúdo da página */
+    * {
+        font-family: monospace, bold !important;
+    }
+</style>
+{% endblock %}

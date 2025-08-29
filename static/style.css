@@ -1,0 +1,104 @@
+.carousel-inner .carousel-item {
+    min-height: 1000px; /* ou ajuste conforme necessário */
+}
+.progress-retro {
+    width: 100%;
+    height: 25px;
+    border: 2px solid #000;
+    background: #fff;
+    display: flex;
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.progress-bar-retro {
+    background: repeating-linear-gradient(
+        to right,
+        #00e000,
+        #00e000 14px,
+        #009900 14px,
+        #009900 28px
+    );
+    height: 100%;
+    width: 0;
+    transition: width 1.5s ease-out;
+    animation: moveBlocks 1s linear infinite;
+}
+
+/* Efeito de movimento nos bloquinhos */
+@keyframes moveBlocks {
+    from { background-position: 0 0; }
+    to { background-position: 28px 0; }
+}
+
+
+.financeiro{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    }
+
+#financeBar {
+    animation: moveStripes 1s linear infinite, fillProgress 1.5s ease-out forwards;
+    background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.2) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.2) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 40px 40px;
+}
+/* Ajuste de responsividade para tabelas no carrossel */
+@media (max-width: 768px) {
+    .table th, .table td {
+        font-size: 12px;
+        padding: 6px;
+    }
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+
+.footer {
+    background-color: #1f1f1f;
+    color: #ccc;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-radius: 10px;
+  }
+
+  body.light-theme .footer {
+    background-color: #ffffff;
+    color: #666;
+    box-shadow: 0 0 10px #ccc;
+  }
+
+.footer {
+  background-color: #f8f9fa;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+}
+
+.footer-logo {
+  width: 60px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.footer-text p {
+  margin: 2px 0;
+  font-size: 14px;
+  color: #555;
+}
+

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Editar Máquina</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label>Patrimônio</label>
+        <input type="text" name="patrimonio" value="{{ maquina.patrimonio }}" class="form-control" required>
+    </div>
+<div class="mb-3">
+    <label>Tipo</label>
+    <select name="tipo" class="form-control">
+        <option value="maquina_tipo_1" {% if maquina.tipo == 'maquina_tipo_1' %}selected{% endif %}>Máquina Tipo 1</option>
+        <option value="maquina_tipo_2" {% if maquina.tipo == 'maquina_tipo_2' %}selected{% endif %}>Máquina Tipo 2</option>
+        <option value="maquina_tipo_3" {% if maquina.tipo == 'maquina_tipo_3' %}selected{% endif %}>Máquina Tipo 3</option>
+        <option value="tela_tipo_1" {% if maquina.tipo == 'tela_tipo_1' %}selected{% endif %}>Tela Tipo 1</option>
+        <option value="tela_tipo_2" {% if maquina.tipo == 'tela_tipo_2' %}selected{% endif %}>Tela Tipo 2</option>
+        <option value="notebook_tipo_1" {% if maquina.tipo == 'notebook_tipo_1' %}selected{% endif %}>Notebook Tipo 1</option>
+        <option value="notebook_tipo_2" {% if maquina.tipo == 'notebook_tipo_2' %}selected{% endif %}>Notebook Tipo 2</option>
+    </select>
+</div>
+    <div class="mb-3">
+        <label>Setor</label>
+        <input type="text" name="setor" value="{{ maquina.setor }}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Status</label>
+        <select name="status" class="form-control">
+            <option value="pendente" {% if maquina.status == 'pendente' %}selected{% endif %}>Pendente</option>
+            <option value="entregue" {% if maquina.status == 'entregue' %}selected{% endif %}>Entregue</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Atualizar</button>
+</form>
+<style>
+    /* Aplica Monospace em todo o conteúdo da página */
+    * {
+        font-family: monospace, bold !important;
+    }
+</style>
+{% endblock %}
